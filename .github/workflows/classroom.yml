@@ -63,27 +63,21 @@ jobs:
       
       - name: Deploy db
         run: |
-          export HELM_OPERATION=install
           helm --kubeconfig ./kube.config upgrade --install db ./k8s/postgres-chart
-   #       helm --kubeconfig ./kube.config status db
-   #       if [ $? -eq 0 ]
-   #         then HELM_OPERATION=upgrade
-   #       fi
-   #       helm --kubeconfig ./kube.config $HELM_OPERATION db ./k8s/postgres-chart
           
       - name: deploy services
         env:
           POSTGRES_PASSWORD: test
         run: |
-          export HELM_OPERATION=install
-          helm --kubeconfig ./kube.config status my-app
-          if [ $? -eq 0 ]
-            then HELM_OPERATION=upgrade
-          fi
-          helm --kubeconfig ./kube.config $HELM_OPERATION my-app ./k8s/my-app \
-          --set services.reservation_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
-          --set services.payment_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
-          --set services.loyalty_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
+           helm --kubeconfig ./kube.config upgrade --install my-app ./k8s/my-app \
+           --set services.reservation_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
+           --set services.payment_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
+           --set services.loyalty_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
+   #       export HELM_OPERATION=install
+   #       helm --kubeconfig ./kube.config status my-app
+   #       if [ $? -eq 0 ]
+   #         then HELM_OPERATION=upgrade
+   #       fi
  
       
       #- name: Send project files on VM

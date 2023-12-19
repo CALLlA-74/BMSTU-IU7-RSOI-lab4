@@ -65,7 +65,7 @@ jobs:
         run: |
           helm --kubeconfig ./kube.config upgrade --install db ./k8s/postgres-chart
           
-      - name: deploy services
+      - name: Deploy app
         env:
           POSTGRES_PASSWORD: test
         run: |
@@ -73,44 +73,6 @@ jobs:
            --set services.reservation-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
            --set services.payment-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
            --set services.loyalty-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
-   #       export HELM_OPERATION=install
-   #       helm --kubeconfig ./kube.config status my-app
-   #       if [ $? -eq 0 ]
-   #         then HELM_OPERATION=upgrade
-   #       fi
- 
-      
-      #- name: Send project files on VM
-      #  uses: appleboy/scp-action@v0.1.4
-      #  with:
-      #    host: ${{ secrets.SSH_HOST }}
-      #    username: ${{ secrets.SSH_USER }}
-      #    key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #    passphrase: ${{ secrets.SSH_PASSWORD }}
-      #    port: ${{ secrets.SSH_PORT }}
-      #    source: "services,scripts,Dockerfile,docker-compose.yml"
-      #    target: /home/${{ secrets.SSH_USER }}/hotel_booking_system
-      #
-      #- name: Build and up hotel-booking-system
-      #  uses: appleboy/ssh-action@v1.0.0
-      #  with:
-      #    host: ${{ secrets.SSH_HOST }}
-      #    username: ${{ secrets.SSH_USER }}
-      #    key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #    passphrase: ${{ secrets.SSH_PASSWORD }}
-      #    port: ${{ secrets.SSH_PORT }}
-      #    script: |
-      #      cd /home/${{ secrets.SSH_USER }}/hotel_booking_system
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose down
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker rmi gateway_service
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker rmi payment_service
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker rmi loyalty_service
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker rmi reservation_service
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose build
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
-      #      echo ${{ secrets.SSH_PASSWORD }} | sudo ./scripts/wait-script.sh
-      #
-      #
 
       
       - name: Run API Tests
@@ -118,7 +80,7 @@ jobs:
         with:
           collection: v2/postman/collection.json
           environment: v2/postman/environment.json
-          delayRequest: 15
+          delayRequest: 100
           reporters: '[ "cli" ]'
           
       - name: Autograding

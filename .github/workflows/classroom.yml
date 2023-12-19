@@ -26,13 +26,6 @@ jobs:
       - name: Run unit tests for loyalty service
         run: pytest -vs services/loyalty_service/app/unit_tests/tests.py
   
-  docker-hub:
-    name: Push docker hub
-    runs-on: ubuntu-latest
-    steps:
-      
-    
-  
   deploy:
     name: Deploy service and run api-test
     needs: [unit-tests]

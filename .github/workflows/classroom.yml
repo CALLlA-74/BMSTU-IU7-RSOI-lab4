@@ -58,7 +58,7 @@ jobs:
           KUBECONFIG_CA_FILE: '${{ secrets.KUBECONFIG_CA }}'
         run: |
           echo "$KUBECONFIG_FILE" > ./kube.config 
-          echo "$KUBECONFIG_CA_FILE" > ./
+          echo "$KUBECONFIG_CA_FILE" > ./ca.pem
  
       
       #- name: Send project files on VM

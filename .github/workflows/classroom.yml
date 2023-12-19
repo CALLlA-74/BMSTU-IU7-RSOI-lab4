@@ -59,6 +59,30 @@ jobs:
         run: |
           echo "$KUBECONFIG_FILE" > ./kube.config 
           echo "$KUBECONFIG_CA_FILE" > ./ca.pem
+      
+      
+      - name: Deploy db
+        run: |
+          export HELM_OPERATION=install
+          helm --kubeconfig ./kube.config status db
+          if [ $? -eq 0 ]
+            then HELM_OPERATION=upgrade
+          fi
+          helm --kubeconfig ./kube.config $HELM_OPERATION db ./k8s/postgres-chart
+          
+      - name: deploy services
+        env:
+          POSTGRES_PASSWORD: test
+        run: |
+          export HELM_OPERATION=install
+          helm --kubeconfig ./kube.config status my-app
+          if [ $? -eq 0 ]
+            then HELM_OPERATION=upgrade
+          fi
+          helm --kubeconfig ./kube.config $HELM_OPERATION my-app ./k8s/my-app \
+          --set services.reservation_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
+          --set services.payment_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
+          --set services.loyalty_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
  
       
       #- name: Send project files on VM
@@ -90,20 +114,20 @@ jobs:
       #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose build
       #      echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
       #      echo ${{ secrets.SSH_PASSWORD }} | sudo ./scripts/wait-script.sh
-      #  
-      #  
-      #  
-      #  
-      #- name: Run API Tests
-      #  uses: matt-ball/newman-action@master
-      #  with:
-      #    collection: v2/postman/collection.json
-      #    environment: v2/postman/environment.json
-      #    delayRequest: 15
-      #    reporters: '[ "cli" ]'
-      #    
-      #- name: Autograding
-      #  uses: education/autograding@v1
-      #  continue-on-error: true
+      #
+      #
+
+      
+      - name: Run API Tests
+        uses: matt-ball/newman-action@master
+        with:
+          collection: v2/postman/collection.json
+          environment: v2/postman/environment.json
+          delayRequest: 15
+          reporters: '[ "cli" ]'
+          
+      - name: Autograding
+        uses: education/autograding@v1
+        continue-on-error: true
     
       

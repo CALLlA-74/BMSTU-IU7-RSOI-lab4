@@ -29,41 +29,21 @@ jobs:
   docker-hub:
     name: Push docker hub
     runs-on: ubuntu-latest
-    strategy:
-	  matrix:
-		include:
-		  - image: ./services/gateway_service
-		    dockerfile: gateway_service/Dockerfile
-		  - image: ./services/loyalty_service
-		    dockerfile: loyalty_service/Dockerfile
-          - image: ./services/payment_service
-		    dockerfile: payment_service/Dockerfile
-          - image: ./services/reservation_service
-		    dockerfile: reservation_service/Dockerfile
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-        
-      - name: Docker Hub login
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker build
+        timeout-minutes: 10
+        run:  docker compose build
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ matrix.dockerfile }}
-      
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ${{ matrix.dockerfile }}
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: Docker Hub login
+        env:
+          CRYANDEX_PASSWORD: ${{ secrets.CRYANDEX_PASSWORD }}
+        run: echo "$CRYANDEX_PASSWORD" | docker login -u oauth --password-stdin cr.yandex
+
+      - name: Docker Publish
+        run: docker compose push
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
     
   
   deploy:

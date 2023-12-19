@@ -63,7 +63,7 @@ services:
 
 #============================================================END OF EXPEREMENTS====================================================
   gateway_service:
-    image: gateway_service
+    image: cr.yandex/crpoaqoigck9sge4bf4s/gateway_service
     build: ./services/gateway_service
     ports:
       - "8080:8080"
@@ -71,7 +71,7 @@ services:
       - default
   
   loyalty_service:
-    image: loyalty_service
+    image: cr.yandex/crpoaqoigck9sge4bf4s/loyalty_service
     build: ./services/loyalty_service
     depends_on:
       loyalties:
@@ -82,7 +82,7 @@ services:
       - default
   
   payment_service:
-    image: payment_service
+    image: cr.yandex/crpoaqoigck9sge4bf4s/payment_service
     build: ./services/payment_service
     depends_on:
       payments:
@@ -93,7 +93,7 @@ services:
       - default
   
   reservation_service:
-    image: reservation_service
+    image: cr.yandex/crpoaqoigck9sge4bf4s/reservation_service
     build: ./services/reservation_service
     depends_on:
       reservations:

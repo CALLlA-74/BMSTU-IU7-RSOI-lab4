@@ -7,21 +7,21 @@ replicaCount: 1
 services:
   loyalty_service:
     name: loyalty_service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-loyalty_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/loyalty_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy like ""
     publishUrl: /loyalty-service-direct/
   payment_service:
     name: payment_service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-payment_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/payment_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy
     publishUrl: /payment-service-direct/
   reservation_service:
     name: reservation_service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-reservation_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/reservation_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy

@@ -1,0 +1,37 @@
+# Default values for my-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+services:
+  loyalty_service:
+    name: loyalty_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-loyalty_service
+    replicaCount: 1
+    env:
+      DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy like ""
+    publishUrl: /loyalty-service-direct/
+  payment_service:
+    name: payment_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-payment_service
+    replicaCount: 1
+    env:
+      DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy
+    publishUrl: /payment-service-direct/
+  reservation_service:
+    name: reservation_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-reservation_service
+    replicaCount: 1
+    env:
+      DB_DSN: "host=db-service user=program password=test dbname=postgres port=5432" # add on deploy
+    publishUrl: /reservation-service-direct/
+  gateway_service:
+    name: gateway_service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/rsoi-gateway
+    replicaCount: 1
+    env:
+      RESERVATION_SERVICE_URL: "http://reservation_service/api/v1/tickets"
+      PAYMENT_SERVICE_URL: "http://payment_service/api/v1/bonus"
+      LOYALTY_SERVICE_URL: "http://loyalty_service/api/v1/flights"
+    publishUrl: /

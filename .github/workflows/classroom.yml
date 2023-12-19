@@ -69,7 +69,7 @@ jobs:
    #         then HELM_OPERATION=upgrade
    #       fi
    #       helm --kubeconfig ./kube.config $HELM_OPERATION db ./k8s/postgres-chart
-          helm --kubeconfig ./kube.config upgrade --install db ./k8s/postgres-chart
+          helm --kubernetes ./kube.config upgrade --install db ./k8s/postgres-chart
           
       - name: deploy services
         env:

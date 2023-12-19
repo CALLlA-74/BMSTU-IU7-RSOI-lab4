@@ -70,9 +70,9 @@ jobs:
           POSTGRES_PASSWORD: test
         run: |
            helm --kubeconfig ./kube.config upgrade --install my-app ./k8s/app-chart \
-           --set services.reservation_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
-           --set services.payment_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
-           --set services.loyalty_service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
+           --set services.reservation-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=reservations port=5432" \
+           --set services.payment-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=payments port=5432" \
+           --set services.loyalty-service.env.DB_DSN="host=db-service user=program password=test dbname=postgres port=5432 user=program password=$POSTGRES_PASSWORD dbname=loyalties port=5432"
    #       export HELM_OPERATION=install
    #       helm --kubeconfig ./kube.config status my-app
    #       if [ $? -eq 0 ]

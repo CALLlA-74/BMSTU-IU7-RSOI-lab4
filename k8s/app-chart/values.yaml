@@ -7,28 +7,28 @@ replicaCount: 1
 services:
   loyalty-service:
     name: loyalty-service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/loyalty-service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/loyalty_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=loyalties port=5432" # add on deploy like ""
     publishUrl: /loyalty-service-direct/
   payment-service:
     name: payment-service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/payment-service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/payment_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=payments port=5432" # add on deploy
     publishUrl: /payment-service-direct/
   reservation-service:
     name: reservation-service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/reservation-service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/reservation_service
     replicaCount: 1
     env:
       DB_DSN: "host=db-service user=program password=test dbname=reservations port=5432" # add on deploy
     publishUrl: /reservation-service-direct/
   gateway-service:
     name: gateway-service
-    container: cr.yandex/crpoaqoigck9sge4bf4s/gateway-service
+    container: cr.yandex/crpoaqoigck9sge4bf4s/gateway_service
     replicaCount: 1
     env:
       RESERVATION_SERVICE_URL: "http://reservation_service/api/v1/tickets"

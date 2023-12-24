@@ -18,25 +18,25 @@ spec:
     spec:
       containers:
         - name: {{ .ctx.Release.Name }}-{{.service.name}}
-          image: "library/postgres:{{ .Values.version }}-alpine"
+          image: "library/postgres:{{ .ctx.Values.version }}-alpine"
           imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_USER
-              value: {{ .Values.default_database.user }}
+              value: {{ .ctx.Values.default_database.user }}
 			- name: POSTGRES_PASSWORD
-              value: {{ .Values.default_database.password }}
+              value: {{ .ctx.Values.default_database.password }}
 			- name: POSTGRES_DB
               value: {{.service.name}}
 		  resources:
             requests:
-              memory: "{{ .Values.resources.requests.memory }}"
-              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: "{{ .ctx.Values.resources.requests.memory }}"
+              cpu: "{{ .ctx.Values.resources.requests.cpu }}"
             limits:
-              memory: "{{ .Values.resources.limits.memory }}"
-              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: "{{ .ctx.Values.resources.limits.memory }}"
+              cpu: "{{ .ctx.Values.resources.limits.cpu }}"
 		  ports:
             - name: {{.service.name}}
-              containerPort: {{ .Values.port }}
+              containerPort: {{ .ctx.Values.port }}
               hostPort: {{ .service.hostPort }}
           volumeMounts:
             - name: db-{{.service.name}}

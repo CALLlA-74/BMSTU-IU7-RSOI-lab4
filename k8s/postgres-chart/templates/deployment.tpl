@@ -23,11 +23,11 @@ spec:
           env:
             - name: POSTGRES_USER
               value: {{ .ctx.Values.default_database.user }}
-			- name: POSTGRES_PASSWORD
+            - name: POSTGRES_PASSWORD
               value: {{ .ctx.Values.default_database.password }}
-			- name: POSTGRES_DB
-              value: {{.service.name}}
-		  resources:
+            - name: POSTGRES_DB
+              value: {{ .service.name }}
+          resources:
             requests:
               memory: "{{ .ctx.Values.resources.requests.memory }}"
               cpu: "{{ .ctx.Values.resources.requests.cpu }}"
@@ -45,7 +45,7 @@ spec:
               mountPath: /docker-entrypoint-initdb.d/init_db.sql
       restartPolicy: Always
 	  
-	  volumes:
+      volumes:
         - name: db-{{.service.name}}
         - name: postgres-config-map
           configMap:

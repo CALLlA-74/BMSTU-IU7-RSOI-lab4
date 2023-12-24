@@ -1,7 +1,8 @@
+{{- define "configmap.template" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .ctx.Release.Name }}-configmap
   labels:
     app.kubernetes.io/name: {{ .Release.Name }}-configmap
     app.kubernetes.io/version: "{{ .Values.version }}"
@@ -9,3 +10,4 @@ metadata:
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm
 data:
+{{- end }}

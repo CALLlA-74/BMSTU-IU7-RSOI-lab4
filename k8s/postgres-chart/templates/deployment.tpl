@@ -33,7 +33,6 @@ spec:
               cpu: "{{ .ctx.Values.resources.requests.cpu }}"
             limits:
               memory: "{{ .ctx.Values.resources.limits.memory }}"
-              cpu: "{{ .ctx.Values.resources.limits.cpu }}"
 		  ports:
             - name: {{.service.name}}
               containerPort: {{ .ctx.Values.port }}

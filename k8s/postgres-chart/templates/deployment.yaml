@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: loyalties
-          image: "cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
+          image: "library/postgres:{{ .Values.version }}-alpine" #"cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
           env:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}
@@ -51,7 +51,7 @@ spec:
         
         
         - name: payments
-          image: "cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
+          image: "library/postgres:{{ .Values.version }}-alpine" #"cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
           env:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}
@@ -75,7 +75,7 @@ spec:
         
         
         - name: reservations
-          image: "cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
+          image: "library/postgres:{{ .Values.version }}-alpine" #"cr.yandex/crpoaqoigck9sge4bf4s/postgres:{{ .Values.version }}-alpine"
           env:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}

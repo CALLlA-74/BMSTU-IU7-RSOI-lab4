@@ -43,8 +43,7 @@ spec:
               mountPath: /var/lib/postgresql/data
             - name: postgres-config-map
               mountPath: /docker-entrypoint-initdb.d/init_db.sql
-      restartPolicy: Always
-	  
+      restartPolicy: Always  
       volumes:
         - name: db-{{.service.name}}
         - name: postgres-config-map

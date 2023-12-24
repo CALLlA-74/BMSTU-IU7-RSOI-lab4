@@ -30,9 +30,9 @@ spec:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}
             - name: POSTGRES_PASSWORD
-              value: "{{ .Values.default_database.password }}"
+              value: {{ .Values.default_database.password }}
             - name: POSTGRES_DB
-              value: {{ .Values.default_database.name }}
+              value: loyalties
           resources:
             requests:
               memory: "{{ .Values.resources.requests.memory }}"
@@ -56,9 +56,9 @@ spec:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}
             - name: POSTGRES_PASSWORD
-              value: "{{ .Values.default_database.password }}"
+              value: {{ .Values.default_database.password }}
             - name: POSTGRES_DB
-              value: {{ .Values.default_database.name }}
+              value: payments
           resources:
             requests:
               memory: "{{ .Values.resources.requests.memory }}"
@@ -80,9 +80,9 @@ spec:
             - name: POSTGRES_USER
               value: {{ .Values.default_database.user }}
             - name: POSTGRES_PASSWORD
-              value: "{{ .Values.default_database.password }}"
+              value: {{ .Values.default_database.password }}
             - name: POSTGRES_DB
-              value: {{ .Values.default_database.name }}
+              value: reservations
           resources:
             requests:
               memory: "{{ .Values.resources.requests.memory }}"
@@ -104,5 +104,3 @@ spec:
         - name: db-payments
         - name: db-reservations
         - name: postgres-config-map
-        #  configMap:
-        #    name: {{ .Release.Name }}-configmap

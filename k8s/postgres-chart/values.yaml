@@ -24,7 +24,6 @@ services:
     env:
       DB_DSN: "" # add on deploy like ""
     hostPort: 5432
-   
    payments:
     name: payments
     container: cr.yandex/crpoaqoigck9sge4bf4s/payments
@@ -32,7 +31,6 @@ services:
     env:
       DB_DSN: "" # add on deploy like ""
     hostPort: 5433
-   
    reservations:
     name: reservations
     container: cr.yandex/crpoaqoigck9sge4bf4s/reservations

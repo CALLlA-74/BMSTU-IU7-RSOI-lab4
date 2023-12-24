@@ -22,19 +22,19 @@ services:
     container: cr.yandex/crpoaqoigck9sge4bf4s/loyalties
     replicaCount: 1
     env:
-      DB_DSN: "" # add on deploy like ""
+      # DB_DSN: "" # add on deploy like ""
     hostPort: 5432
    payments:
     name: payments
     container: cr.yandex/crpoaqoigck9sge4bf4s/payments
     replicaCount: 1
     env:
-      DB_DSN: "" # add on deploy like ""
+      # DB_DSN: "" # add on deploy like ""
     hostPort: 5433
    reservations:
     name: reservations
     container: cr.yandex/crpoaqoigck9sge4bf4s/reservations
     replicaCount: 1
     env:
-      DB_DSN: "" # add on deploy like ""
+      # DB_DSN: "" # add on deploy like ""
     hostPort: 5434

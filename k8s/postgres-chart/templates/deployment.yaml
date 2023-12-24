@@ -42,7 +42,8 @@ spec:
               cpu: "{{ .Values.resources.limits.cpu }}"
           ports:
             - name: loyalties
-              containerPort: 5432
+              containerPort: {{ .Values.port }}
+              hostPort: {{ .Values.port }}
           volumeMounts:
             - name: db-loyalties
               mountPath: /var/lib/postgresql/data
@@ -68,7 +69,8 @@ spec:
               cpu: "{{ .Values.resources.limits.cpu }}"
           ports:
             - name: payments
-              containerPort: 5433
+              containerPort: {{ .Values.port }}
+              hostPort: 5433
           volumeMounts:
             - name: db-payments
               mountPath: /var/lib/postgresql/data
@@ -92,7 +94,8 @@ spec:
               cpu: "{{ .Values.resources.limits.cpu }}"
           ports:
             - name: reservations
-              containerPort: 5434
+              containerPort: {{ .Values.port }}
+              hostPort: 5434
           volumeMounts:
             - name: db-reservations
               mountPath: /var/lib/postgresql/data

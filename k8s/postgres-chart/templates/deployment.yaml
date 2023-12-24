@@ -104,3 +104,5 @@ spec:
         - name: db-payments
         - name: db-reservations
         - name: postgres-config-map
+          configMap:
+            name: {{ .Release.Name }}-configmap

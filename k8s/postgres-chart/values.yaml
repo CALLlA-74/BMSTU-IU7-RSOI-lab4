@@ -24,14 +24,14 @@ services:
     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5432
-   payments:
+  payments:
     name: payments
     container: cr.yandex/crpoaqoigck9sge4bf4s/payments
     replicaCount: 1
     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5433
-   reservations:
+  reservations:
     name: reservations
     container: cr.yandex/crpoaqoigck9sge4bf4s/reservations
     replicaCount: 1

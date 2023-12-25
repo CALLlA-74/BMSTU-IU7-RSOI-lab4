@@ -15,6 +15,11 @@ spec:
       name: {{ .ctx.Release.Name }}-{{.service.name}}
       labels:
         app: {{ .ctx.Release.Name }}-{{.service.name}}
+		app.kubernetes.io/name: {{ .ctx.Release.Name }}-{{.service.name}}
+        app.kubernetes.io/version: "{{ .ctx.Values.version }}"
+        app.kubernetes.io/component: database
+        app.kubernetes.io/part-of: simple-backend
+        app.kubernetes.io/managed-by: helm
     spec:
       containers:
         - name: {{ .ctx.Release.Name }}-{{.service.name}}

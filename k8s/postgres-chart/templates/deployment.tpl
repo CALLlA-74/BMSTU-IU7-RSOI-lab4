@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: {{ .ctx.Release.Name }}-{{.service.name}}
-          image: "library/postgres:{{ .ctx.Values.version }}-alpine"
+          image: library/postgres:{{ .ctx.Values.version }}-alpine
           imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_USER

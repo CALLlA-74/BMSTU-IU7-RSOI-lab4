@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.ctx.Release.Name}}-{{.service.name}}-service
+  name: {{.service.name}}
 spec:
   selector:
-    app: {{.ctx.Release.Name}}-{{.service.name}}
+    app: {{.service.name}}
     app.kubernetes.io/version: "{{ .ctx.Values.version }}"
     app.kubernetes.io/component: database
     app.kubernetes.io/part-of: simple-backend

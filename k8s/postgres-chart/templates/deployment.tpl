@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .ctx.Release.Name }}-{{.service.name}}-dep
+  name: {{.service.name}}
   labels:
-    app: {{ .ctx.Release.Name }}-{{.service.name}}
+    app: {{.service.name}}
 spec:
   replicas: {{.service.replicaCount}}
   selector:
     matchLabels:
-      app: {{ .ctx.Release.Name }}-{{.service.name}}
+      app: {{.service.name}}
   template:
     metadata:
-      name: {{ .ctx.Release.Name }}-{{.service.name}}
+      name: {{.service.name}}
       labels:
-        app: {{ .ctx.Release.Name }}-{{.service.name}}
-        app.kubernetes.io/name: {{ .ctx.Release.Name }}-{{.service.name}}
+        app: {{.service.name}}
+        app.kubernetes.io/name: {{.service.name}}
         app.kubernetes.io/version: "{{ .ctx.Values.version }}"
         app.kubernetes.io/component: database
         app.kubernetes.io/part-of: simple-backend
         app.kubernetes.io/managed-by: helm
     spec:
       containers:
-        - name: {{ .ctx.Release.Name }}-{{.service.name}}
+        - name: {{.service.name}}
           image: library/postgres:{{ .ctx.Values.version }}-alpine
           imagePullPolicy: IfNotPresent
           env:

@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     app: {{.ctx.Release.Name}}-{{.service.name}}
-	app.kubernetes.io/version: "{{ .ctx.Values.version }}"
+    app.kubernetes.io/version: "{{ .ctx.Values.version }}"
     app.kubernetes.io/component: database
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm

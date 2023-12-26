@@ -27,7 +27,7 @@ jobs:
         run: pytest -vs services/loyalty_service/app/unit_tests/tests.py
   
   deploy:
-    name: Deploy service and run api-test
+    name: Deploy services
     needs: [unit-tests]
     runs-on: ubuntu-latest
     steps:

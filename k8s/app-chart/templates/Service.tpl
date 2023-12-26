@@ -8,7 +8,7 @@ spec:
     app: {{.ctx.Release.Name}}-{{.service.name}}
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
+      port: {{.service.port}}
+      targetPort: {{.service.targetPort}}
   type: NodePort
 {{- end }}

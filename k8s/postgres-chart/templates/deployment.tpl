@@ -53,5 +53,5 @@ spec:
         - name: db-{{.service.name}}
         - name: postgres-config-map
           configMap:
-            name: {{ .ctx.Release.Name }}-configmap
+            name: {{ .ctx.Release.Name }}-configmap-{{ .service.name }}
 {{- end}}

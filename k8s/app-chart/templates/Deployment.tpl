@@ -19,7 +19,7 @@ spec:
       containers:
         - name: {{ .ctx.Release.Name }}-{{.service.name}}
           image: {{.service.container}}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             {{- range $k, $v := .service.env}}
             - name: {{$k | quote}}

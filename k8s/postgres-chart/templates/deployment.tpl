@@ -5,6 +5,11 @@ metadata:
   name: {{.service.name}}
   labels:
     app: {{.service.name}}
+	app.kubernetes.io/name: {{.service.name}}
+    app.kubernetes.io/version: "{{ .ctx.Values.version }}"
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: simple-backend
+    app.kubernetes.io/managed-by: helm
 spec:
   replicas: {{.service.replicaCount}}
   selector:
@@ -14,7 +19,6 @@ spec:
     metadata:
       name: {{.service.name}}
       labels:
-        app: {{.service.name}}
         app.kubernetes.io/name: {{.service.name}}
         app.kubernetes.io/version: "{{ .ctx.Values.version }}"
         app.kubernetes.io/component: database
@@ -24,7 +28,7 @@ spec:
       containers:
         - name: {{.service.name}}
           image: library/postgres:{{ .ctx.Values.version }}-alpine
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: {{ .ctx.Values.default_database.user }}
@@ -48,7 +52,6 @@ spec:
               mountPath: /var/lib/postgresql/data
             - name: postgres-config-map
               mountPath: /docker-entrypoint-initdb.d/
-      restartPolicy: Always  
       volumes:
         - name: db-{{.service.name}}
         - name: postgres-config-map

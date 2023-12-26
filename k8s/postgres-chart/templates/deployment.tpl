@@ -4,7 +4,6 @@ kind: Deployment
 metadata:
   name: {{.service.name}}
   labels:
-    app: {{.service.name}}
     app.kubernetes.io/name: {{.service.name}}
     app.kubernetes.io/version: "{{ .ctx.Values.version }}"
     app.kubernetes.io/component: database
@@ -19,6 +18,7 @@ spec:
     metadata:
       name: {{.service.name}}
       labels:
+        app: {{.service.name}}
         app.kubernetes.io/name: {{.service.name}}
         app.kubernetes.io/version: "{{ .ctx.Values.version }}"
         app.kubernetes.io/component: database

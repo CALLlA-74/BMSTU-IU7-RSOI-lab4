@@ -25,8 +25,8 @@ spec:
             - name: {{$k | quote}}
             {{- $fixedadr := $v}}
             {{- range $serviceName,$v := $.services}}
-            {{- $fixedadr = ($fixedadr | replace (printf "://%s/" $serviceName) (printf "://%s-%s-srv/" $.ctx.Release.Name $serviceName) )}}
-            {{- $fixedadr = ($fixedadr | replace (printf "host=%s" $serviceName) (printf "host=%s-%s-srv" $.ctx.Release.Name $serviceName) )}}
+            {{- $fixedadr = ($fixedadr | replace (printf "://%s/" $serviceName) (printf "://%s/" $serviceName) )}}
+            {{- $fixedadr = ($fixedadr | replace (printf "host=%s" $serviceName) (printf "host=%s" $serviceName) )}}
             {{- end}}
               value: {{$fixedadr | quote}}
             {{- end }}

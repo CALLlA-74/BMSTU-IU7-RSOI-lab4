@@ -33,7 +33,7 @@ services:
     port: 8070
     targetPort: 8070
   gateway-service:
-    name: gateway_service
+    name: gateway-service
     container: cr.yandex/crpoaqoigck9sge4bf4s/gateway_service
     replicaCount: 1
     env:

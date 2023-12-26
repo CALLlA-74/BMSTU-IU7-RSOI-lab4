@@ -2,6 +2,7 @@ gateway_app:
   host: "0.0.0.0"
   external_ip: "158.160.131.145"
   port: 8080
+  port_external: 80
   prefix: "/api/v1"
   log_level: "info"
   reload: True

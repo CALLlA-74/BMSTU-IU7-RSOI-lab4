@@ -35,7 +35,7 @@ settings = get_settings()
 app = FastAPI(title="OpenAPI definition",
               version="v1",
               servers=[
-                  {"url": f"http://{settings['external_ip']}:{settings['port']}"},
+                  {"url": f"http://{settings['external_ip']}:{settings['port_external']}"},
                   {"url": f"http://localhost:{settings['port']}"}
               ]
               )

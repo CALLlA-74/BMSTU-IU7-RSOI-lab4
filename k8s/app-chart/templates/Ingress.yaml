@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{$val.name}}
+                name: {{ $.Release.Name }}-{{$val.name}}-srv
                 port:
                   number: 80
           {{- end}}

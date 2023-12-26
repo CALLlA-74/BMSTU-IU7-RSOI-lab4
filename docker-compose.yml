@@ -10,7 +10,7 @@ services:
       - default
     volumes:
       - db-loyalties:/var/lib/postgresql/data
-      - ./services/loyalty_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./services/loyalty_service/sql/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
     healthcheck:
@@ -51,7 +51,7 @@ services:
       - default
     volumes:
       - db-reservations:/var/lib/postgresql/data
-      - ./services/reservation_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./services/reservation_service/sql/:/docker-entrypoint-initdb.d/
     ports:
       - "5434:5432"
     healthcheck:

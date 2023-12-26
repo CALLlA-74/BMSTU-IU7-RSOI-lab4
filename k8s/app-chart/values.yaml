@@ -37,9 +37,9 @@ services:
     container: cr.yandex/crpoaqoigck9sge4bf4s/gateway_service
     replicaCount: 1
     env:
-      RESERVATION_SERVICE_URL: "http://reservation_service/api/v1/"
-      PAYMENT_SERVICE_URL: "http://payment_service/api/v1/"
-      LOYALTY_SERVICE_URL: "http://loyalty_service/api/v1/"
+      RESERVATION_SERVICE_URL: "http://reservation-service/api/v1/"
+      PAYMENT_SERVICE_URL: "http://payment-service/api/v1/"
+      LOYALTY_SERVICE_URL: "http://loyalty-service/api/v1/"
     publishUrl: /
     port: 80
     targetPort: 8080

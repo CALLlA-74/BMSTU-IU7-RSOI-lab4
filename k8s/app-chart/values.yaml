@@ -6,7 +6,7 @@ replicaCount: 1
 
 services:
   loyalty-service:
-    name: loyalty_service
+    name: loyalty-service
     container: cr.yandex/crpoaqoigck9sge4bf4s/loyalty_service
     replicaCount: 1
     env:
@@ -15,7 +15,7 @@ services:
     port: 8050
     targetPort: 8050
   payment-service:
-    name: payment_service
+    name: payment-service
     container: cr.yandex/crpoaqoigck9sge4bf4s/payment_service
     replicaCount: 1
     env:
@@ -24,7 +24,7 @@ services:
     port: 8060
     targetPort: 8060
   reservation-service:
-    name: reservation_service
+    name: reservation-service
     container: cr.yandex/crpoaqoigck9sge4bf4s/reservation_service
     replicaCount: 1
     env:
@@ -37,9 +37,9 @@ services:
     container: cr.yandex/crpoaqoigck9sge4bf4s/gateway_service
     replicaCount: 1
     env:
-      RESERVATION_SERVICE_URL: "http://reservation_service/api/v1/"
-      PAYMENT_SERVICE_URL: "http://payment_service/api/v1/"
-      LOYALTY_SERVICE_URL: "http://loyalty_service/api/v1/"
+      RESERVATION_SERVICE_URL: "http://reservation-service/api/v1/"
+      PAYMENT_SERVICE_URL: "http://payment-service/api/v1/"
+      LOYALTY_SERVICE_URL: "http://loyalty-service/api/v1/"
     publishUrl: /
     port: 80
     targetPort: 8080

@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.service.name}}
+  name: {{.ctx.Release.Name}}-{{.service.name}}-srv
 spec:
   selector:
-    app: {{.service.name}}
+    app: {{.ctx.Release.Name}}-{{.service.name}}
   ports:
     - protocol: TCP
       port: {{.service.port}}

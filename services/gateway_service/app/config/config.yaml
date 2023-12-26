@@ -7,11 +7,11 @@ gateway_app:
   log_level: "info"
   reload: True
 
-  reservation_serv_host: "reservation_service"
+  reservation_serv_host: "reservation-service"
   reservation_serv_port: 8070
 
-  payment_serv_host: "payment_service"
+  payment_serv_host: "payment-service"
   payment_serv_port: 8060
 
-  loyalty_serv_host: "loyalty_service"
+  loyalty_serv_host: "loyalty-service"
   loyalty_serv_port: 8050

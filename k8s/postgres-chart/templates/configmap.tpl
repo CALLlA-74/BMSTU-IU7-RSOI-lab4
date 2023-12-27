@@ -11,5 +11,5 @@ metadata:
     app.kubernetes.io/managed-by: helm
 data: 
   init-db.sql: |-
-    {{ .ctx.Files.Get (printf "%s-init-db.sql" .service.name) | nindent 4 }}
+    {{ (.ctx.Files.Get (printf "%s-init-db.sql" .service.name)).AsConfig | nindent 4 }}
 {{- end }}

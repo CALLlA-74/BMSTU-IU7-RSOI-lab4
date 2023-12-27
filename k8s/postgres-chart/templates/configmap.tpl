@@ -10,5 +10,5 @@ metadata:
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm
 data: 
-  init-db.sql: "{{ .ctx.{{ .service.name }}-init-db }}"
+  {{- (.Files.Glob "{{ .service.name }}-init-db").AsConfig | nindent 2 }}
 {{- end }}

@@ -62,8 +62,8 @@ jobs:
       
       - name: Deploy db
         run: |
-          cp ./services/reservation_service/sql/init_db.sql ./k8s/postgres-chart/reservations-init-db |
-          cp ./services/loyalty_service/sql/init_db.sql ./k8s/postgres-chart/loyalties-init-db |
+          cp ./services/reservation_service/sql/init_db.sql ./k8s/postgres-chart/reservations-init-db.sql |
+          cp ./services/loyalty_service/sql/init_db.sql ./k8s/postgres-chart/loyalties-init-db.sql |
           helm --kubeconfig ./kube.config upgrade --install db ./k8s/postgres-chart
           
       - name: Deploy app

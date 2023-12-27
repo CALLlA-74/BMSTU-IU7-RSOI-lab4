@@ -4,6 +4,6 @@
 ---
 {{- template "deployment.template" (dict "ctx" $ "service" $val "services" $.Values.services)}}
 ---
-{{- template "configmap.template" (dict "ctx" $ "service" $val "services" $.Values.services) }}
+{{- template "configmap.template" (dict "ctx" $ "service" $val) }}
 ---
 {{- end }}

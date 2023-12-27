@@ -10,6 +10,6 @@ metadata:
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm
 data: 
-  init-db: |-
-    {{ .ctx.Files.Get (printf "%s-init-db.sql" .service.name | quote) | nindent 4 }}
+  init-db.sql: |-
+    {{ .ctx.Files.Get (printf "%s-init-db.sql" .service.name | quote) | nindent 4 | quote }}
 {{- end }}

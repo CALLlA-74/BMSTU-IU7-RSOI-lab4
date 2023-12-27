@@ -11,5 +11,5 @@ metadata:
     app.kubernetes.io/managed-by: helm
 data: 
   init-db:
-{{ $.Files.Glob (printf "%s-init-db" .service.name | quote) | nindent 4 }}
+{{ $.Files.Glob (printf "../%s-init-db" .service.name | quote) | nindent 4 }}
 {{- end }}

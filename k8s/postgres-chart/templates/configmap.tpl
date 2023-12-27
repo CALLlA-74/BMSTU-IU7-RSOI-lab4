@@ -10,5 +10,5 @@ metadata:
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm
 data: 
-  init-db.sql: {{ .ctx.{{ .service.name }}-init-db }}
+  init-db.sql: "{{ .ctx.{{ .service.name }}-init-db }}"
 {{- end }}

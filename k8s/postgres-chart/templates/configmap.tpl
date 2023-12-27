@@ -9,5 +9,6 @@ metadata:
     app.kubernetes.io/component: application
     app.kubernetes.io/part-of: simple-backend
     app.kubernetes.io/managed-by: helm
-data: .{{ .service.name }}-init-db.sql
+data: 
+	{{ .service.name }}-init-db.sql: {{ .{{ .service.name }}-init-db.sql }}
 {{- end }}

@@ -25,14 +25,30 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.hotels (
-    id integer NOT NULL,
-    hotel_uid uuid NOT NULL,
+    id integer NOT NULL PRIMARY KEY,
+    hotel_uid uuid NOT NULL UNIQUE,
     name varchar(255) NOT NULL,
     country varchar(80) NOT NULL,
     city varchar(80) NOT NULL,
     adress varchar(255) NOT NULL,
     stars integer,
     price integer NOT NULL
+);
+
+
+--
+-- Name: reservation; Type: TABLE; Schema: public; Owner: program
+--
+
+CREATE TABLE public.reservation (
+    id integer NOT NULL PRIMARY KEY,
+    reservation_uid uuid NOT NULL UNIQUE,
+    username varchar(80) NOT NULL,
+    payment_uid uuid NOT NULL UNIQUE,
+    hotel_id integer NOT NULL REFERENCES hotels (id) ON DELETE CASCADE,
+    status varchar(20) NOT NULL default 'PAID',
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL
 );
 
 

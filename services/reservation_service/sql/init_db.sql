@@ -53,6 +53,7 @@ CREATE TABLE public.reservation (
 
 
 ALTER TABLE public.hotels OWNER TO program;
+ALTER TABLE public.reservation OWNER TO program;
 
 --
 -- Name: ticket_id_seq; Type: SEQUENCE; Schema: public; Owner: program

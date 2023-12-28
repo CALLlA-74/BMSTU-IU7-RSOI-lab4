@@ -5,8 +5,6 @@
 -- Dumped from database version 16.0
 -- Dumped by pg_dump version 16.0
 
-CREATE USER program WITH PASSWORD 'test';
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
